@@ -1,10 +1,12 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
+        maven {url 'http://developer.huawei.com/repo/'}
         google()
         jcenter()
     }
     dependencies {
+        classpath 'com.huawei.agconnect:agcp:1.4.2.300'
         classpath "com.android.tools.build:gradle:4.1.1"
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -14,6 +16,7 @@ buildscript {
 
 allprojects {
     repositories {
+        maven {url 'http://developer.huawei.com/repo/'}
         google()
         jcenter()
     }
