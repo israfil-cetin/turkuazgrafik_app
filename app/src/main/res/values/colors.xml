@@ -7,4 +7,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="colorPrimary">#E87373</color>
+    <color name="colorSecondary">#6365D6</color>
+    <color name="turkuaz_koyu_gri">#3c3c3c</color>
+    <color name="turkuaz_acik_gri">#6f6f6f</color>
+    <color name="turkuaz_org">#2ba0a0</color>
+    <color name="turkuaz_hardal">#f3b33b</color>
+    <color name="turkuaz_font">#2ca1a1</color>
+    <color name="turkuaz_turuncu">#F66E43</color>
 </resources>
