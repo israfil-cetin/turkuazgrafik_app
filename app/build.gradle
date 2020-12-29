@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.turkuazgrafik_app"
-        minSdkVersion 19
+        minSdkVersion 17
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -34,8 +34,10 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'com.huawei.agconnect:agconnect-core:1.4.0.300'
     implementation 'com.android.volley:volley:1.1.1'
+    implementation 'com.huawei.hms:push:5.0.4.302'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     testImplementation 'junit:junit:4.13.1'
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 }

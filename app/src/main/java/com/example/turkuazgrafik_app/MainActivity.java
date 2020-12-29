@@ -3,6 +3,10 @@ package com.example.turkuazgrafik_app;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +24,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener{
-
+    private TextView tvToken;
     private TextView mTextViewResult;
     private RequestQueue mQueue;
     ViewPager viewPager;
@@ -29,6 +33,13 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        tvToken = findViewById(R.id.mytoken);
+
+        MyReceiver receiver = new MyReceiver();
+        IntentFilter filter=new IntentFilter();
+        filter.addAction("com.example.turkuazgrafik_app.ON_NEW_TOKEN");
+        MainActivity.this.registerReceiver(receiver,filter);
 
         viewPager = findViewById(R.id.vpPager);
         viewPager.setAdapter(new FragmentAdapter(getSupportFragmentManager()));
@@ -99,4 +110,18 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     public void onPageScrollStateChanged(int state) {
 
     }
+
+    public class MyReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if ("com.example.turkuazgrafik_app.ON_NEW_TOKEN".equals(intent.getAction())) {
+                String token = intent.getStringExtra("token");
+                tvToken.setText(token);
+            }
+        }
+    }
 }
+
+
+
