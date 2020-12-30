@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     public void volleyPost(String token){
-        String postUrl = "http://icetin.pythonanywhere.com/api/task-create/";
+        String postUrl = "https://icetin.pythonanywhere.com/api/task-create/";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
         JSONObject postData = new JSONObject();
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     }
     public void volleyGet(){
-        String url = "http://covid.discountr.info/";
+        String url = "https://covid.discountr.info/";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -134,14 +134,18 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     toplam_vefat = response.getString("toplam_vefat");
 
                     Bundle bundle = new Bundle();
-                    bundle.putString("agir_hasta_sayisi", agir_hasta_sayisi);
+                    bundle.putString("gunluk_test", gunluk_test);
+                    bundle.putString("gunluk_vaka", gunluk_vaka);
+                    bundle.putString("gunluk_hasta", gunluk_hasta);
+                    bundle.putString("gunluk_vefat", gunluk_vefat);
+                    bundle.putString("gunluk_iyilesen", gunluk_iyilesen);
+
                     // set Fragmentclass Arguments
                     fragobj = new Bugun();
                     fragobj.setArguments(bundle);
 
 
 
-                    Log.d("tagggg",agir_hasta_sayisi);
 
                     getSupportFragmentManager().beginTransaction()
                             .add(R.id.fragment_container, /*id of your frame layout*/
