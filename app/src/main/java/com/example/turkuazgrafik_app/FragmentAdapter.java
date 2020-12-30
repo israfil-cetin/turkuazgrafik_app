@@ -26,16 +26,16 @@ public class FragmentAdapter extends FragmentPagerAdapter {
 
         switch (position){
             case 0: {
-                return Bugun.newInstance(basliklar.get(position));
+                return new Bugun();
             }
             case 1: {
-                return BuHafta.newInstance(basliklar.get(position));
+                return new BuHafta();
             }
             case 2: {
-                return Toplam.newInstance(basliklar.get(position));
+                return new Toplam();
             }
             default: {
-                return Bugun.newInstance(basliklar.get(position));
+                return new Bugun();
             }
 
         }
