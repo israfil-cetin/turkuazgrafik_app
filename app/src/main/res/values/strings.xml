@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">turkuazgrafik_app</string>
-    <string name="test_sayisi">Test Sayısı</string>
+    <string name="test_sayisi">TEST SAYISI</string>
+    <string name="vaka_sayisi">VAKA SAYISI</string>
+    <string name="hasta_sayisi">HASTA SAYISI</string>
+    <string name="vefat_sayisi">VEFAT SAYISI</string>
+    <string name="iyi_sayisi">İYİLEŞEN SAYISI</string>
 </resources>
