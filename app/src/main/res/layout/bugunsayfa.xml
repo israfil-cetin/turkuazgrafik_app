@@ -3,37 +3,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:id="@+id/fragment_container"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/colorPrimary">
+    android:background="@color/turkuaz_acik_gri">
 
     <TextView
         android:id="@+id/tv_test_sayisi_baslik"
         android:layout_width="match_parent"
-        android:layout_height="63dp"
+        android:layout_height="51dp"
         android:gravity="center"
-        android:textColor="@android:color/black"
+        android:textColor="@color/black"
         android:text="@string/test_sayisi"
         android:textSize="24sp"
         android:textStyle="bold"
+
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        />
 
     <TextView
         android:id="@+id/tv_test_sayisi_yazi"
         android:layout_width="match_parent"
-        android:layout_height="63dp"
+        android:layout_height="51dp"
+        android:gravity="center"
+
         android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_test_sayisi_baslik" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_test_sayisi_baslik"
+        />
 
     <TextView
         android:id="@+id/tv_vaka_sayisi_baslik"
         android:layout_width="match_parent"
-        android:layout_height="63dp"
+        android:layout_height="51dp"
+        android:gravity="center"
+
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="@string/vaka_sayisi"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,64 +56,98 @@
     <TextView
         android:id="@+id/tv_vaka_sayisi_yazi"
         android:layout_width="match_parent"
-        android:layout_height="63dp"
+        android:layout_height="51dp"
+        android:gravity="center"
+
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_vaka_sayisi_baslik" />
 
     <TextView
         android:id="@+id/tv_hasta_sayisi_baslik"
         android:layout_width="match_parent"
-        android:layout_height="63dp"
+        android:layout_height="51dp"
+        android:gravity="center"
+
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:text="@string/hasta_sayisi"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_vaka_sayisi_yazi" />
 
     <TextView
         android:id="@+id/tv_hasta_sayisi_yazi"
         android:layout_width="match_parent"
-        android:layout_height="63dp"
-        android:textColor="@color/black"
+        android:layout_height="51dp"
+        android:gravity="center"
+
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_hasta_sayisi_baslik" />
 
     <TextView
         android:id="@+id/tv_vefat_sayisi_baslik"
         android:layout_width="match_parent"
-        android:layout_height="63dp"
+        android:layout_height="51dp"
+        android:gravity="center"
+
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:text="@string/vefat_sayisi"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_hasta_sayisi_yazi" />
 
     <TextView
         android:id="@+id/tv_vefat_sayisi_yazi"
         android:layout_width="match_parent"
-        android:layout_height="63dp"
+        android:layout_height="51dp"
+        android:gravity="center"
+
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_vefat_sayisi_baslik" />
 
     <TextView
         android:id="@+id/tv_iyilesen_sayisi_baslik"
         android:layout_width="match_parent"
-        android:layout_height="63dp"
+        android:layout_height="51dp"
+        android:gravity="center"
+
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:text="@string/iyi_sayisi"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_vefat_sayisi_yazi" />
 
     <TextView
         android:id="@+id/tv_iyilesen_sayisi_yazi"
         android:layout_width="match_parent"
-        android:layout_height="63dp"
+        android:layout_height="51dp"
+        android:gravity="center"
+
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_iyilesen_sayisi_baslik" />
 
