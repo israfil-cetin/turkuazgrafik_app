@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     private RequestQueue mQueue;
     ViewPager viewPager;
     Bugun fragobj;
+    BuHafta fragobj2;
+    Toplam fragobj3;
     String agir_hasta_sayisi;
     String gunluk_hasta;
     String gunluk_iyilesen ;
@@ -44,10 +46,14 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     String ortalama_temasli_tespit_suresi ;
     String tarih ;
     String toplam_hasta ;
-    String firstName ;
     String toplam_iyilesen ;
     String toplam_test ;
     String toplam_vefat ;
+    String hastalarda_zaturre_oran ;
+    String yatak_doluluk_orani ;
+    String eriskin_yogun_bakim_doluluk_orani ;
+    String ventilator_doluluk_orani ;
+    String filyasyon_orani ;
 
 
 
@@ -128,10 +134,15 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     ortalama_temasli_tespit_suresi = response.getString("ortalama_temasli_tespit_suresi");
                     tarih = response.getString("tarih");
                     toplam_hasta = response.getString("toplam_hasta");
-                    firstName = response.getString("agir_hasta_sayisi");
                     toplam_iyilesen = response.getString("toplam_iyilesen");
                     toplam_test = response.getString("toplam_test");
                     toplam_vefat = response.getString("toplam_vefat");
+                    hastalarda_zaturre_oran = response.getString("hastalarda_zaturre_oran");
+                    yatak_doluluk_orani = response.getString("yatak_doluluk_orani");
+                    eriskin_yogun_bakim_doluluk_orani = response.getString("eriskin_yogun_bakim_doluluk_orani");
+                    ventilator_doluluk_orani = response.getString("ventilator_doluluk_orani");
+                    filyasyon_orani = response.getString("filyasyon_orani");
+
 
                     Bundle bundle = new Bundle();
                     bundle.putString("gunluk_test", gunluk_test);
@@ -140,17 +151,49 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     bundle.putString("gunluk_vefat", gunluk_vefat);
                     bundle.putString("gunluk_iyilesen", gunluk_iyilesen);
 
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putString("hastalarda_zaturre_oran", hastalarda_zaturre_oran);
+                    bundle2.putString("yatak_doluluk_orani", yatak_doluluk_orani);
+                    bundle2.putString("eriskin_yogun_bakim_doluluk_orani", eriskin_yogun_bakim_doluluk_orani);
+                    bundle2.putString("ventilator_doluluk_orani", ventilator_doluluk_orani);
+                    bundle2.putString("ortalama_temasli_tespit_suresi", ortalama_temasli_tespit_suresi);
+                    bundle2.putString("filyasyon_orani", filyasyon_orani);
+
+                    Bundle bundle3 = new Bundle();
+                    bundle3.putString("toplam_test", toplam_test);
+                    bundle3.putString("toplam_hasta", toplam_hasta);
+                    bundle3.putString("toplam_vefat", toplam_vefat);
+                    bundle3.putString("agir_hasta_sayisi", agir_hasta_sayisi);
+                    bundle3.putString("toplam_iyilesen", toplam_iyilesen);
+
+
                     // set Fragmentclass Arguments
                     fragobj = new Bugun();
                     fragobj.setArguments(bundle);
+                    fragobj2 = new BuHafta();
+                    fragobj2.setArguments(bundle2);
+
+                    fragobj3 = new Toplam();
+                    fragobj3.setArguments(bundle3);
 
 
 
-
+                    ////Burası container'a gönderiyor. Yoksa sayfa boş olucaktır.
                     getSupportFragmentManager().beginTransaction()
                             .add(R.id.fragment_container, /*id of your frame layout*/
                                     fragobj /*instance of the fragment created in your activity*/)
+
                             .commit();
+
+                    getSupportFragmentManager().beginTransaction()
+                            .add(R.id.fragment_container2, /*id of your frame layout*/
+                                    fragobj2 /*instance of the fragment created in your activity*/)
+                            .commit();
+
+//                    getSupportFragmentManager().beginTransaction()
+//                            .add(R.id.fragment_container3, /*id of your frame layout*/
+//                                    fragobj3 /*instance of the fragment created in your activity*/)
+//                            .commit();
 
 
 
