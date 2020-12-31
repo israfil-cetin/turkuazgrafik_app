@@ -5,4 +5,19 @@
     <string name="hasta_sayisi">HASTA SAYISI</string>
     <string name="vefat_sayisi">VEFAT SAYISI</string>
     <string name="iyi_sayisi">İYİLEŞEN SAYISI</string>
+
+
+    <string name="has_zat_orani">HASTALARDA ZATÜRRE ORANI</string>
+    <string name="yat_dol_orani">YATAK DOLULUK ORANI</string>
+    <string name="eris_yog_orani">ERİŞKİN YOĞUN BAKIM DOLULUK ORANI</string>
+    <string name="vent_dol_orani">VENTİLATÖR DOLULUK ORANI</string>
+    <string name="ort_tem_orani">ORTALAMA TEMASLI TESPİT SÜRESİ</string>
+    <string name="fil_orani">FİLYASYON ORANI</string>
+
+    <string name="top_test_sayisi">TEST SAYISI</string>
+    <string name="top_vaka_sayisi">VAKA SAYISI</string>
+    <string name="top_fevaf_sayisi">VEFAT SAYISI</string>
+    <string name="agir_hasta_sayisi">AĞIR HASTA SAYISI</string>
+    <string name="iyilesen_sayisi">İYİLEŞEN SAYISI</string>
+
 </resources>
