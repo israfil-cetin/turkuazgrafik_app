@@ -24,15 +24,24 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.huawei.hms.analytics.HiAnalytics;
+import com.huawei.hms.analytics.HiAnalyticsInstance;
+import com.huawei.hms.analytics.HiAnalyticsTools;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener{
-    private TextView tvToken;
+    private TextView today_time;
     private TextView mTextViewResult;
     private RequestQueue mQueue;
+
+    HiAnalyticsInstance instance;
     ViewPager viewPager;
     Bugun fragobj;
     BuHafta fragobj2;
@@ -66,10 +75,22 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
 
 
+        HiAnalyticsTools.enableLog();
+        instance = HiAnalytics.getInstance(this);
+        instance.setAnalyticsEnabled(true);
+
+
+//        Bundle bundle = new Bundle();
+//        bundle.putString("exam_difficulty","high");
+//        bundle.putString("exam_level","1-1");
+//        bundle.putString("exam_time","20190520-08");
+//        instance.onEvent("begin_examination", bundle);
+// Add triggers of predefined events in proper positions of the code.
 
 
 
-        tvToken = findViewById(R.id.mytoken);
+
+        today_time = findViewById(R.id.today_time);
 
         MyReceiver receiver = new MyReceiver();
         IntentFilter filter=new IntentFilter();
@@ -88,6 +109,15 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         volleyGet();
 
 
+    }
+    private static String format(String s) {
+        if (s.length() <= 3)
+            return s;
+        int first = (s.length() - 1) % 3 + 1;
+        StringBuilder buf = new StringBuilder(s.substring(0, first));
+        for (int i = first; i < s.length(); i += 3)
+            buf.append('.').append(s.substring(i, i + 3));
+        return buf.toString();
     }
 
     public void volleyPost(String token){
@@ -126,23 +156,24 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
                 try {
                     agir_hasta_sayisi = response.getString("agir_hasta_sayisi");
-                    gunluk_hasta = response.getString("gunluk_hasta");
-                    gunluk_iyilesen = response.getString("gunluk_iyilesen");
-                    gunluk_test = response.getString("gunluk_test");
-                    gunluk_vaka = response.getString("gunluk_vaka");
-                    gunluk_vefat = response.getString("gunluk_vefat");
-                    ortalama_temasli_tespit_suresi = response.getString("ortalama_temasli_tespit_suresi");
+                    gunluk_hasta = format(response.getString("gunluk_hasta"));
+                    gunluk_iyilesen = format(response.getString("gunluk_iyilesen"));
+                    gunluk_test = format(response.getString("gunluk_test"));
+                    gunluk_vaka = format(response.getString("gunluk_vaka"));
+                    gunluk_vefat = format(response.getString("gunluk_vefat"));
+                    ortalama_temasli_tespit_suresi = response.getString("ortalama_temasli_tespit_suresi")+ " Saat";
                     tarih = response.getString("tarih");
-                    toplam_hasta = response.getString("toplam_hasta");
-                    toplam_iyilesen = response.getString("toplam_iyilesen");
-                    toplam_test = response.getString("toplam_test");
-                    toplam_vefat = response.getString("toplam_vefat");
-                    hastalarda_zaturre_oran = response.getString("hastalarda_zaturre_oran");
-                    yatak_doluluk_orani = response.getString("yatak_doluluk_orani");
-                    eriskin_yogun_bakim_doluluk_orani = response.getString("eriskin_yogun_bakim_doluluk_orani");
-                    ventilator_doluluk_orani = response.getString("ventilator_doluluk_orani");
-                    filyasyon_orani = response.getString("filyasyon_orani");
+                    toplam_hasta = format(response.getString("toplam_hasta"));
+                    toplam_iyilesen = format(response.getString("toplam_iyilesen"));
+                    toplam_test = format(response.getString("toplam_test"));
+                    toplam_vefat = format(response.getString("toplam_vefat"));
+                    hastalarda_zaturre_oran = "%" + response.getString("hastalarda_zaturre_oran").replace(".",",");
+                    yatak_doluluk_orani = "%" +response.getString("yatak_doluluk_orani").replace(".",",");
+                    eriskin_yogun_bakim_doluluk_orani = "%" +response.getString("eriskin_yogun_bakim_doluluk_orani").replace(".",",");
+                    ventilator_doluluk_orani = "%" +response.getString("ventilator_doluluk_orani").replace(".",",");
+                    filyasyon_orani = "%" +response.getString("filyasyon_orani").replace(".",",");
 
+                    today_time.setText(timeformat(tarih));
 
                     Bundle bundle = new Bundle();
                     bundle.putString("gunluk_test", gunluk_test);
@@ -211,7 +242,18 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
         mQueue.add(request);
     }
+    public String timeformat(String dtStart){
+        SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+        try {
 
+            Date d = sd.parse(dtStart);
+            sd = new SimpleDateFormat("dd MM yyyy");
+            return sd.format(d);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
 
@@ -236,7 +278,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         public void onReceive(Context context, Intent intent) {
             if ("com.example.turkuazgrafik_app.ON_NEW_TOKEN".equals(intent.getAction())) {
                 String token = intent.getStringExtra("token");
-                tvToken.setText(token);
+//                tvToken.setText(token);
                 volleyPost(token);
             }
         }

@@ -28,7 +28,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:background="@color/turkuaz_turuncu" >
     <TextView
-        android:id="@+id/mytoken"
+        android:id="@+id/today_time"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"

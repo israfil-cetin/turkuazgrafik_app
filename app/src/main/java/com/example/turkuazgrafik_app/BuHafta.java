@@ -14,6 +14,11 @@ import androidx.fragment.app.Fragment;
 
     public class BuHafta  extends Fragment {
         @Override
+        public void onStart() {
+            super.onStart();
+            ((MainActivity)getActivity()).instance.pageStart("Buhafta sayfa",this.getClass().getName());
+        }
+        @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.haftasayfa, container, false);
 
@@ -35,5 +40,10 @@ import androidx.fragment.app.Fragment;
             TextView txSix = (TextView) view.findViewById(R.id.tv_fililasyon_yazi);
             txSix.setText(((MainActivity)getActivity()).filyasyon_orani);
             return view;
+        }
+        @Override
+        public void onStop() {
+            super.onStop();
+            ((MainActivity)getActivity()).instance.pageStart("Bugün sayfa","bugün");
         }
     }

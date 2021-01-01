@@ -12,7 +12,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 public class Bugun extends Fragment {
-
+    @Override
+    public void onStart() {
+        super.onStart();
+        ((MainActivity)getActivity()).instance.pageStart("Bugün sayfa",this.getClass().getName());
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -36,6 +40,12 @@ public class Bugun extends Fragment {
         txtFive.setText(((MainActivity)getActivity()).gunluk_iyilesen);
 
         return returnView;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        ((MainActivity)getActivity()).instance.pageStart("Bugün sayfa","bugün");
     }
 
 
