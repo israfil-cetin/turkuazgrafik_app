@@ -19,5 +19,6 @@
     <string name="top_fevaf_sayisi">VEFAT SAYISI</string>
     <string name="agir_hasta_sayisi">AĞIR HASTA SAYISI</string>
     <string name="iyilesen_sayisi">İYİLEŞEN SAYISI</string>
+    <string name="tarih">Tarih</string>
 
 </resources>

@@ -12,9 +12,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -36,7 +38,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener{
+public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
     private TextView today_time;
     private TextView mTextViewResult;
     private RequestQueue mQueue;
@@ -107,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
 
         volleyGet();
+
 
 
     }
@@ -207,24 +210,12 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     fragobj3 = new Toplam();
                     fragobj3.setArguments(bundle3);
 
+                    getsup(1);
+                    getsup(2);
 
 
-                    ////Burası container'a gönderiyor. Yoksa sayfa boş olucaktır.
-                    getSupportFragmentManager().beginTransaction()
-                            .add(R.id.fragment_container, /*id of your frame layout*/
-                                    fragobj /*instance of the fragment created in your activity*/)
 
-                            .commit();
 
-                    getSupportFragmentManager().beginTransaction()
-                            .add(R.id.fragment_container2, /*id of your frame layout*/
-                                    fragobj2 /*instance of the fragment created in your activity*/)
-                            .commit();
-
-//                    getSupportFragmentManager().beginTransaction()
-//                            .add(R.id.fragment_container3, /*id of your frame layout*/
-//                                    fragobj3 /*instance of the fragment created in your activity*/)
-//                            .commit();
 
 
 
@@ -254,7 +245,39 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         }
         return null;
     }
+    public void getsup(int expression){
 
+        switch(expression) {
+            case 1:
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.fragment_container, /*id of your frame layout*/
+                                fragobj /*instance of the fragment created in your activity*/)
+
+                        .commit();
+                break;
+            case 2:
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.fragment_container2, /*id of your frame layout*/
+                                fragobj2 /*instance of the fragment created in your activity*/)
+                        .commit();
+                break;
+            case 3:
+                        getSupportFragmentManager().beginTransaction()
+                .add(R.id.fragment_container3, /*id of your frame layout*/
+                        fragobj3 /*instance of the fragment created in your activity*/)
+                .commit();
+                break;
+
+        }
+
+
+
+
+
+
+
+
+    }
 
 
     @Override
@@ -271,6 +294,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     public void onPageScrollStateChanged(int state) {
 
     }
+
+
 
     public class MyReceiver extends BroadcastReceiver {
 

@@ -1,53 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:id="@+id/fragment_container2"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/turkuaz_acik_gri">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_container2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/turkuaz_koyu_gri"
+    android:gravity="center">
 
     <TextView
         android:id="@+id/tv_has_zat_baslik"
         android:layout_width="match_parent"
-        android:layout_height="51dp"
+        android:layout_height="43dp"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/turkuaz_org"
         android:gravity="center"
-        android:textColor="@color/black"
         android:text="@string/has_zat_orani"
-        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         android:textStyle="bold"
-
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_has_zat_yazi"
         android:layout_width="match_parent"
-        android:layout_height="51dp"
-        android:gravity="center"
+        android:layout_height="43dp"
+        android:layout_marginHorizontal="50dp"
 
+        android:background="@color/turkuaz_acik_gri"
+        android:gravity="center"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_has_zat_baslik"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/tv_has_zat_baslik" />
 
     <TextView
         android:id="@+id/tv_yat_dol_baslik"
         android:layout_width="match_parent"
-        android:layout_height="51dp"
+        android:layout_height="43dp"
+        android:layout_marginHorizontal="50dp"
+
+        android:background="@color/turkuaz_org"
         android:gravity="center"
-
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
         android:text="@string/yat_dol_orani"
-
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,13 +58,14 @@
     <TextView
         android:id="@+id/tv_yat_dol_yazi"
         android:layout_width="match_parent"
-        android:layout_height="51dp"
-        android:gravity="center"
+        android:layout_height="43dp"
+        android:layout_marginHorizontal="50dp"
 
+        android:background="@color/turkuaz_acik_gri"
+        android:gravity="center"
+        android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@color/white"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_yat_dol_baslik" />
@@ -70,13 +73,14 @@
     <TextView
         android:id="@+id/tv_eris_yog_baslik"
         android:layout_width="match_parent"
-        android:layout_height="51dp"
+        android:layout_height="43dp"
+        android:layout_marginHorizontal="50dp"
+        android:background="@color/turkuaz_org"
         android:gravity="center"
-
-        android:textSize="24sp"
-        android:textStyle="bold"
         android:text="@string/eris_yog_orani"
-
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_yat_dol_yazi" />
@@ -84,13 +88,14 @@
     <TextView
         android:id="@+id/tv_eris_yog_yazi"
         android:layout_width="match_parent"
-        android:layout_height="51dp"
-        android:gravity="center"
+        android:layout_height="43dp"
+        android:layout_marginHorizontal="50dp"
 
+        android:background="@color/turkuaz_acik_gri"
+        android:gravity="center"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_eris_yog_baslik" />
@@ -98,13 +103,14 @@
     <TextView
         android:id="@+id/tv_vent_dol_baslik"
         android:layout_width="match_parent"
-        android:layout_height="51dp"
+        android:layout_height="43dp"
+        android:layout_marginHorizontal="50dp"
+        android:background="@color/turkuaz_org"
         android:gravity="center"
-
-        android:textStyle="bold"
-        android:textSize="24sp"
         android:text="@string/vent_dol_orani"
-
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_eris_yog_yazi" />
@@ -112,13 +118,14 @@
     <TextView
         android:id="@+id/tv_vent_dol_yazi"
         android:layout_width="match_parent"
-        android:layout_height="51dp"
-        android:gravity="center"
+        android:layout_height="43dp"
+        android:layout_marginHorizontal="50dp"
 
+        android:background="@color/turkuaz_acik_gri"
+        android:gravity="center"
+        android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@color/white"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_vent_dol_baslik" />
@@ -126,13 +133,14 @@
     <TextView
         android:id="@+id/tv_ort_tem_baslik"
         android:layout_width="match_parent"
-        android:layout_height="51dp"
+        android:layout_height="43dp"
+        android:layout_marginHorizontal="50dp"
+        android:background="@color/turkuaz_org"
         android:gravity="center"
-
-        android:textSize="24sp"
-        android:textStyle="bold"
         android:text="@string/ort_tem_orani"
-
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_vent_dol_yazi" />
@@ -140,13 +148,14 @@
     <TextView
         android:id="@+id/tv_ort_tem_yazi"
         android:layout_width="match_parent"
-        android:layout_height="51dp"
-        android:gravity="center"
+        android:layout_height="43dp"
+        android:layout_marginHorizontal="50dp"
 
+        android:background="@color/turkuaz_acik_gri"
+        android:gravity="center"
+        android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@color/white"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_ort_tem_baslik" />
@@ -154,13 +163,14 @@
     <TextView
         android:id="@+id/tv_fililasyon_baslik"
         android:layout_width="match_parent"
-        android:layout_height="51dp"
+        android:layout_height="43dp"
+        android:layout_marginHorizontal="50dp"
+        android:background="@color/turkuaz_org"
         android:gravity="center"
-
-        android:textSize="24sp"
+        android:text="@string/fil_orani"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         android:textStyle="bold"
-        android:text="@string/ort_tem_orani"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_ort_tem_yazi" />
@@ -168,16 +178,24 @@
     <TextView
         android:id="@+id/tv_fililasyon_yazi"
         android:layout_width="match_parent"
-        android:layout_height="51dp"
-        android:gravity="center"
+        android:layout_height="43dp"
+        android:layout_marginHorizontal="50dp"
 
+        android:background="@color/turkuaz_acik_gri"
+        android:gravity="center"
+        android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@color/white"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_fililasyon_baslik" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

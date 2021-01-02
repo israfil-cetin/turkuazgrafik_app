@@ -2,22 +2,24 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:gravity="center"
     android:id="@+id/fragment_container"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/turkuaz_acik_gri">
+    android:background="@color/turkuaz_koyu_gri">
 
     <TextView
         android:id="@+id/tv_test_sayisi_baslik"
         android:layout_width="match_parent"
         android:layout_height="51dp"
         android:gravity="center"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:text="@string/test_sayisi"
         android:textSize="24sp"
         android:textStyle="bold"
-
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="50dp"
+        android:background="@color/turkuaz_org"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />
@@ -31,7 +33,8 @@
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-
+        android:background="@color/turkuaz_acik_gri"
+        android:layout_marginHorizontal="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_test_sayisi_baslik"
@@ -45,9 +48,10 @@
 
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:text="@string/vaka_sayisi"
-
+        android:background="@color/turkuaz_org"
+        android:layout_marginHorizontal="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +62,8 @@
         android:layout_width="match_parent"
         android:layout_height="51dp"
         android:gravity="center"
-
+        android:background="@color/turkuaz_acik_gri"
+        android:layout_marginHorizontal="50dp"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/white"
@@ -72,11 +77,12 @@
         android:layout_width="match_parent"
         android:layout_height="51dp"
         android:gravity="center"
-
+        android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
         android:text="@string/hasta_sayisi"
-
+        android:background="@color/turkuaz_org"
+        android:layout_marginHorizontal="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_vaka_sayisi_yazi" />
@@ -90,7 +96,8 @@
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-
+        android:background="@color/turkuaz_acik_gri"
+        android:layout_marginHorizontal="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_hasta_sayisi_baslik" />
@@ -100,11 +107,12 @@
         android:layout_width="match_parent"
         android:layout_height="51dp"
         android:gravity="center"
-
+        android:textColor="@color/white"
         android:textStyle="bold"
         android:textSize="24sp"
         android:text="@string/vefat_sayisi"
-
+        android:background="@color/turkuaz_org"
+        android:layout_marginHorizontal="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_hasta_sayisi_yazi" />
@@ -118,7 +126,8 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/white"
-
+        android:background="@color/turkuaz_acik_gri"
+        android:layout_marginHorizontal="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_vefat_sayisi_baslik" />
@@ -128,11 +137,12 @@
         android:layout_width="match_parent"
         android:layout_height="51dp"
         android:gravity="center"
-
+        android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
         android:text="@string/iyi_sayisi"
-
+        android:background="@color/turkuaz_org"
+        android:layout_marginHorizontal="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_vefat_sayisi_yazi" />
@@ -146,7 +156,8 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/white"
-
+        android:background="@color/turkuaz_acik_gri"
+        android:layout_marginHorizontal="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_iyilesen_sayisi_baslik" />
