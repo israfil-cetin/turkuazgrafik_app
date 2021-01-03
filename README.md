@@ -5,7 +5,7 @@
 
 Türkiye Cumhuriyeti Sağlık Bakanlığı tarafından yayınlanan korona hasta tablosu yayınlandığında bildirim gönderen ve son yayımlanan hasta tablosunu tablosunu gösteren ugulamadır. 
 
-![](covidapp_1.png) ![](covidapp_2.png) ![](covidapp_3.png) ![](covidapp_4.png)
+![](covidapp_1.png) ![](covidapp_2.png) ![](covidapp_3.png) ![](covidapp_4.png) ![](covidapp_5.png)
 
 ## Kurulum
 
