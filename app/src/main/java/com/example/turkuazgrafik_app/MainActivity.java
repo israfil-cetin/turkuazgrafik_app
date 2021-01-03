@@ -10,10 +10,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +29,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.huawei.hms.analytics.HiAnalytics;
 import com.huawei.hms.analytics.HiAnalyticsInstance;
 import com.huawei.hms.analytics.HiAnalyticsTools;
@@ -38,10 +42,47 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener {
+public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
     private TextView today_time;
     private TextView mTextViewResult;
     private RequestQueue mQueue;
+    private Animation retateOpen;
+
+    public synchronized Animation retateOpenMet() {
+        if (retateOpen == null) {
+            retateOpen = new AnimationUtils().loadAnimation(this, R.anim.rotate_open_anim);
+        }
+        return retateOpen;
+    }
+
+    private Animation retateClose;
+
+    public synchronized Animation retateCloseMet() {
+        if (retateClose == null) {
+            retateClose = new AnimationUtils().loadAnimation(this, R.anim.rotate_close_anim);
+        }
+        return retateClose;
+    }
+
+
+
+    private Animation fromBottom;
+
+    public synchronized Animation fromBottomMet() {
+        if (fromBottom == null) {
+            fromBottom = new AnimationUtils().loadAnimation(this, R.anim.from_botom_anim);
+        }
+        return fromBottom;
+    }
+
+    private Animation toBottom;
+
+    public synchronized Animation toBottomMet() {
+        if (toBottom == null) {
+            toBottom = new AnimationUtils().loadAnimation(this, R.anim.to_bottom_anim);
+        }
+        return toBottom;
+    }
 
     HiAnalyticsInstance instance;
     ViewPager viewPager;
@@ -50,23 +91,27 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     Toplam fragobj3;
     String agir_hasta_sayisi;
     String gunluk_hasta;
-    String gunluk_iyilesen ;
+    String gunluk_iyilesen;
     String gunluk_test;
-    String gunluk_vaka ;
-    String gunluk_vefat ;
-    String ortalama_temasli_tespit_suresi ;
-    String tarih ;
-    String toplam_hasta ;
-    String toplam_iyilesen ;
-    String toplam_test ;
-    String toplam_vefat ;
-    String hastalarda_zaturre_oran ;
-    String yatak_doluluk_orani ;
-    String eriskin_yogun_bakim_doluluk_orani ;
-    String ventilator_doluluk_orani ;
-    String filyasyon_orani ;
+    String gunluk_vaka;
+    String gunluk_vefat;
+    String ortalama_temasli_tespit_suresi;
+    String tarih;
+    String toplam_hasta;
+    String toplam_iyilesen;
+    String toplam_test;
+    String toplam_vefat;
+    String hastalarda_zaturre_oran;
+    String yatak_doluluk_orani;
+    String eriskin_yogun_bakim_doluluk_orani;
+    String ventilator_doluluk_orani;
+    String filyasyon_orani;
 
+    boolean clicked;
 
+    FloatingActionButton btn_add;
+    FloatingActionButton btn_refresh;
+    FloatingActionButton btn_twitter;
 
 
     @Override
@@ -75,6 +120,14 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         setContentView(R.layout.activity_main);
         mQueue = Volley.newRequestQueue(this);
 
+
+        btn_add = findViewById(R.id.add_btn);
+        btn_refresh = findViewById(R.id.refresh_btn);
+        btn_twitter = findViewById(R.id.twitter_btn);
+
+        btn_add.setOnClickListener(this);
+        btn_refresh.setOnClickListener(this);
+        btn_twitter.setOnClickListener(this);
 
 
         HiAnalyticsTools.enableLog();
@@ -90,14 +143,12 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 // Add triggers of predefined events in proper positions of the code.
 
 
-
-
         today_time = findViewById(R.id.today_time);
 
         MyReceiver receiver = new MyReceiver();
-        IntentFilter filter=new IntentFilter();
+        IntentFilter filter = new IntentFilter();
         filter.addAction("com.example.turkuazgrafik_app.ON_NEW_TOKEN");
-        MainActivity.this.registerReceiver(receiver,filter);
+        MainActivity.this.registerReceiver(receiver, filter);
 
 
         viewPager = findViewById(R.id.vpPager);
@@ -106,13 +157,11 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         viewPager.addOnPageChangeListener(this);
 
 
-
-
         volleyGet();
 
 
-
     }
+
     private static String format(String s) {
         if (s.length() <= 3)
             return s;
@@ -123,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         return buf.toString();
     }
 
-    public void volleyPost(String token){
+    public void volleyPost(String token) {
         String postUrl = "https://icetin.pythonanywhere.com/api/task-create/";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
@@ -151,7 +200,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         requestQueue.add(jsonObjectRequest);
 
     }
-    public void volleyGet(){
+
+    public void volleyGet() {
         String url = "https://covid.discountr.info/";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
@@ -164,17 +214,17 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     gunluk_test = format(response.getString("gunluk_test"));
                     gunluk_vaka = format(response.getString("gunluk_vaka"));
                     gunluk_vefat = format(response.getString("gunluk_vefat"));
-                    ortalama_temasli_tespit_suresi = response.getString("ortalama_temasli_tespit_suresi")+ " Saat";
+                    ortalama_temasli_tespit_suresi = response.getString("ortalama_temasli_tespit_suresi") + " Saat";
                     tarih = response.getString("tarih");
                     toplam_hasta = format(response.getString("toplam_hasta"));
                     toplam_iyilesen = format(response.getString("toplam_iyilesen"));
                     toplam_test = format(response.getString("toplam_test"));
                     toplam_vefat = format(response.getString("toplam_vefat"));
-                    hastalarda_zaturre_oran = "%" + response.getString("hastalarda_zaturre_oran").replace(".",",");
-                    yatak_doluluk_orani = "%" +response.getString("yatak_doluluk_orani").replace(".",",");
-                    eriskin_yogun_bakim_doluluk_orani = "%" +response.getString("eriskin_yogun_bakim_doluluk_orani").replace(".",",");
-                    ventilator_doluluk_orani = "%" +response.getString("ventilator_doluluk_orani").replace(".",",");
-                    filyasyon_orani = "%" +response.getString("filyasyon_orani").replace(".",",");
+                    hastalarda_zaturre_oran = "%" + response.getString("hastalarda_zaturre_oran").replace(".", ",");
+                    yatak_doluluk_orani = "%" + response.getString("yatak_doluluk_orani").replace(".", ",");
+                    eriskin_yogun_bakim_doluluk_orani = "%" + response.getString("eriskin_yogun_bakim_doluluk_orani").replace(".", ",");
+                    ventilator_doluluk_orani = "%" + response.getString("ventilator_doluluk_orani").replace(".", ",");
+                    filyasyon_orani = "%" + response.getString("filyasyon_orani").replace(".", ",");
 
                     today_time.setText(timeformat(tarih));
 
@@ -214,12 +264,6 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     getsup(2);
 
 
-
-
-
-
-
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -233,7 +277,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
         mQueue.add(request);
     }
-    public String timeformat(String dtStart){
+
+    public String timeformat(String dtStart) {
         SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
         try {
 
@@ -245,9 +290,10 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         }
         return null;
     }
-    public void getsup(int expression){
 
-        switch(expression) {
+    public void getsup(int expression) {
+
+        switch (expression) {
             case 1:
                 getSupportFragmentManager().beginTransaction()
                         .add(R.id.fragment_container, /*id of your frame layout*/
@@ -262,23 +308,61 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                         .commit();
                 break;
             case 3:
-                        getSupportFragmentManager().beginTransaction()
-                .add(R.id.fragment_container3, /*id of your frame layout*/
-                        fragobj3 /*instance of the fragment created in your activity*/)
-                .commit();
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.fragment_container3, /*id of your frame layout*/
+                                fragobj3 /*instance of the fragment created in your activity*/)
+                        .commit();
                 break;
 
         }
 
 
-
-
-
-
-
-
     }
 
+    private void  onAddButtonClicked(){
+        setVisiblty(clicked);
+        setAnimation(clicked);
+        setClickable(clicked);
+        clicked = !clicked;
+    }
+
+    private void  setVisiblty(boolean clicked){
+
+        if (!clicked){
+            btn_refresh.setVisibility(View.VISIBLE);
+            btn_twitter.setVisibility(View.VISIBLE);
+        } else {
+            btn_refresh.setVisibility(View.INVISIBLE);
+            btn_twitter.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void  setAnimation(boolean clicked){
+
+        if (!clicked){
+
+            btn_refresh.startAnimation(fromBottomMet());
+            btn_twitter.startAnimation(fromBottomMet());
+            btn_add.startAnimation(retateOpenMet());
+        }else{
+            btn_refresh.startAnimation(toBottomMet());
+            btn_twitter.startAnimation(toBottomMet());
+            btn_add.startAnimation(retateCloseMet());
+        }
+
+    }
+    private void setClickable(boolean clicked){
+        if (!clicked){
+
+
+            btn_twitter.setClickable(true);
+            btn_refresh.setClickable(true);
+
+        }else{
+            btn_twitter.setClickable(false);
+            btn_refresh.setClickable(false);
+        }
+    }
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -295,6 +379,22 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.add_btn:
+                Toast.makeText(this, "Button 1 Clicked", Toast.LENGTH_SHORT).show();
+                onAddButtonClicked();
+                break;
+            case R.id.refresh_btn:
+                Toast.makeText(this, "Button 2 Clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.twitter_btn:
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/trturkuazgrafik"));
+                startActivity(browserIntent);
+                break;
+        }
+    }
 
 
     public class MyReceiver extends BroadcastReceiver {
