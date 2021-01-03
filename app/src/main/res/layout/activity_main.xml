@@ -74,7 +74,7 @@
             android:id="@+id/fmLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_weight="1.15"
             android:background="@color/turkuaz_hardal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

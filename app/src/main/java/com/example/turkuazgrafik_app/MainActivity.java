@@ -278,6 +278,83 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         mQueue.add(request);
     }
 
+    public void volleyGet2() {
+        String url = "https://covid.discountr.info/";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+
+                try {
+                    agir_hasta_sayisi = response.getString("agir_hasta_sayisi");
+                    gunluk_hasta = format(response.getString("gunluk_hasta"));
+                    gunluk_iyilesen = format(response.getString("gunluk_iyilesen"));
+                    gunluk_test = format(response.getString("gunluk_test"));
+                    gunluk_vaka = format(response.getString("gunluk_vaka"));
+                    gunluk_vefat = format(response.getString("gunluk_vefat"));
+                    ortalama_temasli_tespit_suresi = response.getString("ortalama_temasli_tespit_suresi") + " Saat";
+                    tarih = response.getString("tarih");
+                    toplam_hasta = format(response.getString("toplam_hasta"));
+                    toplam_iyilesen = format(response.getString("toplam_iyilesen"));
+                    toplam_test = format(response.getString("toplam_test"));
+                    toplam_vefat = format(response.getString("toplam_vefat"));
+                    hastalarda_zaturre_oran = "%" + response.getString("hastalarda_zaturre_oran").replace(".", ",");
+                    yatak_doluluk_orani = "%" + response.getString("yatak_doluluk_orani").replace(".", ",");
+                    eriskin_yogun_bakim_doluluk_orani = "%" + response.getString("eriskin_yogun_bakim_doluluk_orani").replace(".", ",");
+                    ventilator_doluluk_orani = "%" + response.getString("ventilator_doluluk_orani").replace(".", ",");
+                    filyasyon_orani = "%" + response.getString("filyasyon_orani").replace(".", ",");
+
+                    today_time.setText(timeformat(tarih));
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("gunluk_test", gunluk_test);
+                    bundle.putString("gunluk_vaka", gunluk_vaka);
+                    bundle.putString("gunluk_hasta", gunluk_hasta);
+                    bundle.putString("gunluk_vefat", gunluk_vefat);
+                    bundle.putString("gunluk_iyilesen", gunluk_iyilesen);
+
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putString("hastalarda_zaturre_oran", hastalarda_zaturre_oran);
+                    bundle2.putString("yatak_doluluk_orani", yatak_doluluk_orani);
+                    bundle2.putString("eriskin_yogun_bakim_doluluk_orani", eriskin_yogun_bakim_doluluk_orani);
+                    bundle2.putString("ventilator_doluluk_orani", ventilator_doluluk_orani);
+                    bundle2.putString("ortalama_temasli_tespit_suresi", ortalama_temasli_tespit_suresi);
+                    bundle2.putString("filyasyon_orani", filyasyon_orani);
+
+                    Bundle bundle3 = new Bundle();
+                    bundle3.putString("toplam_test", toplam_test);
+                    bundle3.putString("toplam_hasta", toplam_hasta);
+                    bundle3.putString("toplam_vefat", toplam_vefat);
+                    bundle3.putString("agir_hasta_sayisi", agir_hasta_sayisi);
+                    bundle3.putString("toplam_iyilesen", toplam_iyilesen);
+
+
+                    // set Fragmentclass Arguments
+                    fragobj = new Bugun();
+                    fragobj.setArguments(bundle);
+                    fragobj2 = new BuHafta();
+                    fragobj2.setArguments(bundle2);
+
+                    fragobj3 = new Toplam();
+                    fragobj3.setArguments(bundle3);
+
+                    Log.d("test2",ventilator_doluluk_orani);
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        mQueue.add(request);
+    }
+
     public String timeformat(String dtStart) {
         SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
         try {
@@ -383,11 +460,11 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.add_btn:
-                Toast.makeText(this, "Button 1 Clicked", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "Button 1 Clicked", Toast.LENGTH_SHORT).show();
                 onAddButtonClicked();
                 break;
             case R.id.refresh_btn:
-                Toast.makeText(this, "Button 2 Clicked", Toast.LENGTH_SHORT).show();
+                volleyGet2();
                 break;
             case R.id.twitter_btn:
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/trturkuazgrafik"));
