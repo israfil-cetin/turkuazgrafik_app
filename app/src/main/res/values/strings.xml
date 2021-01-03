@@ -23,5 +23,6 @@
     <string name="menu">Menu</string>
     <string name="refresh">Refresh</string>
     <string name="twitter">Twitter</string>
+    <string name="telegram">Telegram</string>
 
 </resources>

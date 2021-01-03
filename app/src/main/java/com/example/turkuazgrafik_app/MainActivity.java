@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     FloatingActionButton btn_add;
     FloatingActionButton btn_refresh;
     FloatingActionButton btn_twitter;
+    FloatingActionButton btn_telegram;
 
 
     @Override
@@ -124,10 +125,12 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         btn_add = findViewById(R.id.add_btn);
         btn_refresh = findViewById(R.id.refresh_btn);
         btn_twitter = findViewById(R.id.twitter_btn);
+        btn_telegram = findViewById(R.id.telegram_btn);
 
         btn_add.setOnClickListener(this);
         btn_refresh.setOnClickListener(this);
         btn_twitter.setOnClickListener(this);
+        btn_telegram.setOnClickListener(this);
 
 
         HiAnalyticsTools.enableLog();
@@ -408,9 +411,11 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         if (!clicked){
             btn_refresh.setVisibility(View.VISIBLE);
             btn_twitter.setVisibility(View.VISIBLE);
+            btn_telegram.setVisibility(View.VISIBLE);
         } else {
             btn_refresh.setVisibility(View.INVISIBLE);
             btn_twitter.setVisibility(View.INVISIBLE);
+            btn_telegram.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -420,10 +425,12 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
             btn_refresh.startAnimation(fromBottomMet());
             btn_twitter.startAnimation(fromBottomMet());
+            btn_telegram.startAnimation(fromBottomMet());
             btn_add.startAnimation(retateOpenMet());
         }else{
             btn_refresh.startAnimation(toBottomMet());
             btn_twitter.startAnimation(toBottomMet());
+            btn_telegram.startAnimation(toBottomMet());
             btn_add.startAnimation(retateCloseMet());
         }
 
@@ -434,10 +441,12 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
             btn_twitter.setClickable(true);
             btn_refresh.setClickable(true);
+            btn_telegram.setClickable(true);
 
         }else{
             btn_twitter.setClickable(false);
             btn_refresh.setClickable(false);
+            btn_telegram.setClickable(false);
         }
     }
 
@@ -469,6 +478,10 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             case R.id.twitter_btn:
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/trturkuazgrafik"));
                 startActivity(browserIntent);
+                break;
+            case R.id.telegram_btn:
+                Intent browserIntent2 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/turkuazgrafik"));
+                startActivity(browserIntent2);
                 break;
         }
     }

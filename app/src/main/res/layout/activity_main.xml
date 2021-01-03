@@ -6,6 +6,20 @@
     tools:context=".MainActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/telegram_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="@color/white"
+        android:clickable="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/twitter_btn"
+        app:layout_constraintEnd_toEndOf="@+id/add_btn"
+        app:srcCompat="@drawable/ic_telegram"
+        android:focusable="true"
+        android:contentDescription="@string/telegram" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/twitter_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
