@@ -43,9 +43,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
-    private TextView today_time;
+
     private TextView mTextViewResult;
     private RequestQueue mQueue;
+
+
+
+    // lazy for java , these are for animations
     private Animation retateOpen;
 
     public synchronized Animation retateOpenMet() {
@@ -85,10 +89,13 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     }
 
     HiAnalyticsInstance instance;
+
+    private TextView today_time;
     ViewPager viewPager;
     Bugun fragobj;
     BuHafta fragobj2;
     Toplam fragobj3;
+
     String agir_hasta_sayisi;
     String gunluk_hasta;
     String gunluk_iyilesen;
@@ -119,9 +126,13 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //volley req queue
         mQueue = Volley.newRequestQueue(this);
 
 
+
+        // float buttons
         btn_add = findViewById(R.id.add_btn);
         btn_refresh = findViewById(R.id.refresh_btn);
         btn_twitter = findViewById(R.id.twitter_btn);
@@ -131,36 +142,45 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         btn_refresh.setOnClickListener(this);
         btn_twitter.setOnClickListener(this);
         btn_telegram.setOnClickListener(this);
+        // float buttons
 
 
+
+        // analytic kit
         HiAnalyticsTools.enableLog();
         instance = HiAnalytics.getInstance(this);
         instance.setAnalyticsEnabled(true);
 
+        instance.setAutoCollectionEnabled(true);
 
-//        Bundle bundle = new Bundle();
-//        bundle.putString("exam_difficulty","high");
-//        bundle.putString("exam_level","1-1");
-//        bundle.putString("exam_time","20190520-08");
-//        instance.onEvent("begin_examination", bundle);
-// Add triggers of predefined events in proper positions of the code.
+
+        Bundle bundle = new Bundle();
+        bundle.putString("user_AAID",String.valueOf(instance.getAAID()));
+        instance.onEvent("begin_examination", bundle);
+        // analytic kit
 
 
         today_time = findViewById(R.id.today_time);
 
+        // push kit
         MyReceiver receiver = new MyReceiver();
         IntentFilter filter = new IntentFilter();
         filter.addAction("com.example.turkuazgrafik_app.ON_NEW_TOKEN");
         MainActivity.this.registerReceiver(receiver, filter);
+        // push kit
 
 
+        // vppager fragment
         viewPager = findViewById(R.id.vpPager);
         viewPager.setAdapter(new FragmentAdapter(getSupportFragmentManager()));
 
         viewPager.addOnPageChangeListener(this);
+        // vppager fragment
 
 
+        // get data from https://covid19.saglik.gov.tr/
         volleyGet();
+
 
 
     }
@@ -175,6 +195,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         return buf.toString();
     }
 
+    // this func. post request to pythoneverywhere.com server
+    // it was the api server writed by me with python
     public void volleyPost(String token) {
         String postUrl = "https://icetin.pythonanywhere.com/api/task-create/";
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -263,6 +285,8 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     fragobj3 = new Toplam();
                     fragobj3.setArguments(bundle3);
 
+                    // these 2 getsup funcs are for fragments
+                    // if these 2 methods do not exist, fragmest won't show datas
                     getsup(1);
                     getsup(2);
 
@@ -280,7 +304,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
         mQueue.add(request);
     }
-
+    // TODO kendime not burası 2. kez yazılmış bir metot değil mi? Burayı düzelt
     public void volleyGet2() {
         String url = "https://covid.discountr.info/";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -358,6 +382,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         mQueue.add(request);
     }
 
+    // this converts iso time format to the simple time format
     public String timeformat(String dtStart) {
         SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
         try {
@@ -371,6 +396,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         return null;
     }
 
+    // for framelayout SupportFragmentManager, it shows to data
     public void getsup(int expression) {
 
         switch (expression) {
@@ -399,6 +425,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
 
     }
 
+    // Float button's Animation methods
     private void  onAddButtonClicked(){
         setVisiblty(clicked);
         setAnimation(clicked);
@@ -449,6 +476,9 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
             btn_telegram.setClickable(false);
         }
     }
+    // Float button's Animation methods
+
+
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
