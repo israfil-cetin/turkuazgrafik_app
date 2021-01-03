@@ -27,6 +27,15 @@ Turkuaz grafik diğer:
 Twitter - [@trturkuazgrafik](https://twitter.com/trturkuazgrafik) – Telegram https://t.me/turkuazgrafik
 
 
+## Diğer teknolojiler
+Uygulamada Hms push kit ve Hms analytics kit kullandım. 
+Cihazın push kit için ürettiği tokenleri, pythoneverywhere.com'da python django ile yazdığım bir rest api'ye göndermekteyim.
+Bu django uygulaması sqlite ile bu tokenleri unique olarak kaydetmektedir ve zamanı gelince push notificationları Huawei'ye göndermektedir. Huawei'den dönen mesajlar cihazlara ulaşmaktadır.
+Fakat django uygulaması tokenler alma, kaydetme ve push mesajı isteği atma gibi işlemleri yapsa dahi yeni verileri kontrol etme işini yapmamaktadadır. Bunun sebebi serverın kısıtlı imkalarını aşmamak içindir.
+Django uygulamasına mesajın gönderilme metodunu tetikleten başka bir python scriptidir. Bu script heroku.com da çalışmaktadır. Saat 18:30 dan sonra python scripti aktif olup her 5 dk'da bir yeni veri kontrolü yapmaktadır. 
+Yeni veri tespitinde django sunucusunun tetikletici komutu çalıştırılıp push mesaj cihazlara ulaştırılmaktadır.  
+
+## Benim her soruma usanmadan cevap vererek yardımcı olmaya çalışan [bkayranci](https://github.com/bkayranci'a teşekkürü borç bilirim.
 
 
 
