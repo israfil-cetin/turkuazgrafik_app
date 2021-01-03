@@ -20,5 +20,8 @@
     <string name="agir_hasta_sayisi">AĞIR HASTA SAYISI</string>
     <string name="iyilesen_sayisi">İYİLEŞEN SAYISI</string>
     <string name="tarih">Tarih</string>
+    <string name="menu">Menu</string>
+    <string name="refresh">Refresh</string>
+    <string name="twitter">Twitter</string>
 
 </resources>
