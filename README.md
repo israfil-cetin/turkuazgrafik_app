@@ -13,7 +13,7 @@ Uygulamayı indirip andoid studio ile açabilirsiniz.
 ```sh
 git clone https://github.com/icetin-yu/turkuazgrafik_app.git
 ```
-Yada app-debug.apk dosyasını telefonunuza atarak test edebilirsiniz.
+Ya da app-debug.apk dosyasını telefonunuza atarak test edebilirsiniz.
 
 
 ## Uygulana kullanımı
