@@ -53,7 +53,7 @@ Yeni veri tespitinde django sunucusunun tetikletici komutu çalıştırılıp pu
 İsrafil ÇETİN – Twitter [@icetin_](https://twitter.com/icetin_) – icetin93@gmail.com.com
 
 
-[https://github.com/yourname/github-link](https://github.com/dbader/)
+[https://github.com/israfil-cetin/](https://github.com/israfil-cetin/)
 
 ## Contributing
 
